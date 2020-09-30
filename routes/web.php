@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('dateMiddleware')->group(function(){
-    Route::get('/test', 'TestController@test');
+Route::middleware(['auth','roleMiddleware'])->group(function(){
+    Route::get('/route-1', 'TestController@test')->name('Route Pertama');
+    Route::get('/route-2', 'TestController@test')->name('Route Kedua');
+    Route::get('/route-3', 'TestController@test')->name('Route Ketiga');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
