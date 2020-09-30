@@ -13,6 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        // pass: testtest
         DB::table('users')->insert([
             [
                 'name' => 'guest',
